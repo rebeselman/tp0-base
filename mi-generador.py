@@ -1,44 +1,12 @@
 import sys
 
-# deberia tener un servidor y clientes de esta forma:
-#   server:
-#     container_name: server
-#     image: server:latest
-#     entrypoint: python3 /main.py
-#     environment:
-#       - PYTHONUNBUFFERED=1
-#       - LOGGING_LEVEL=DEBUG
-#     networks:
-#       - testing_net
-
-#   client1:
-#     container_name: client1
-#     image: client:latest
-#     entrypoint: /client
-#     environment:
-#       - CLI_ID=1
-#       - CLI_LOG_LEVEL=DEBUG
-#     networks:
-#       - testing_net
-#     depends_on:
-#       - server
-
-# networks:
-#   testing_net:
-#     ipam:
-#       driver: default
-#       config:
-#         - subnet: 172.25.125.0/24
-
-
-
 
 # Genera un archivo docker compose con
 # lacantidad de clientes pedidos y el nombre indicado
 def generar_docker_compose(nombre_archivo, cantidad_clientes):
     with open(nombre_archivo, 'w') as f:
-        f.write/"name: tp0\n"
-        f.write("services\n")
+        f.write("name: tp0\n")
+        f.write("services:\n")
         f.write("  server:\n")
         f.write("    container_name: server\n")
         f.write("    image: server:latest\n")
@@ -47,7 +15,7 @@ def generar_docker_compose(nombre_archivo, cantidad_clientes):
         f.write("      - PYTHONUNBUFFERED=1\n")
         f.write("      - LOGGING_LEVEL=DEBUG\n")
         
-
+        f.write("\n")
         for i in range(1, cantidad_clientes + 1):
             f.write(f"  client{i}:\n")
             f.write(f"    container_name: client{i}\n")
@@ -60,6 +28,8 @@ def generar_docker_compose(nombre_archivo, cantidad_clientes):
             f.write("      - testing_net\n")
             f.write("    depends_on:\n")
             f.write("      - server\n")
+            f.write("\n")
+
 
 
         f.write("networks:\n")
