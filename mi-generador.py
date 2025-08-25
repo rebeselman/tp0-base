@@ -23,7 +23,7 @@ def generar_docker_compose(nombre_archivo, cantidad_clientes):
             f.write("    image: client:latest\n")
             f.write("    entrypoint: /client\n")
             f.write("    volumes:\n")
-            f.write("      - ./config_client.yaml:/config.yaml:ro")
+            f.write("      - ./config_client.yaml:/config.yaml:ro\n")
 
    
             f.write("    networks:\n")
