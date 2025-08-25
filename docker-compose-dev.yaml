@@ -4,9 +4,8 @@ services:
     container_name: server
     image: server:latest
     entrypoint: python3 /main.py
-    environment:
-      - PYTHONUNBUFFERED=1
-      - LOGGING_LEVEL=DEBUG
+    volumes:
+      - ./config_server.ini:/config.ini:ro
     networks:
       - testing_net
 
@@ -14,10 +13,8 @@ services:
     container_name: client1
     image: client:latest
     entrypoint: /client
-    environment:
-      - CLI_ID=1
-      - CLI_LOG_LEVEL=DEBUG
-    networks:
+    volumes:
+      - ./config_client.yaml:/config.yaml:ro    networks:
       - testing_net
     depends_on:
       - server
