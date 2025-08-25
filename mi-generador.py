@@ -11,9 +11,8 @@ def generar_docker_compose(nombre_archivo, cantidad_clientes):
         f.write("    container_name: server\n")
         f.write("    image: server:latest\n")
         f.write("    entrypoint: python3 /main.py\n")
-        f.write("    environment:\n")
-        f.write("      - PYTHONUNBUFFERED=1\n")
-        f.write("      - LOGGING_LEVEL=DEBUG\n")
+        f.write("    volumes:\n")
+        f.write("      - ./config_server.ini:/config.ini:ro\n")
         f.write("    networks:\n")
         f.write("      - testing_net\n")
         
@@ -23,9 +22,10 @@ def generar_docker_compose(nombre_archivo, cantidad_clientes):
             f.write(f"    container_name: client{i}\n")
             f.write("    image: client:latest\n")
             f.write("    entrypoint: /client\n")
-            f.write(f"    environment:\n")
-            f.write(f"      - CLI_ID={i}\n")
-            f.write("      - CLI_LOG_LEVEL=DEBUG\n")
+            f.write("    volumes:\n")
+            f.write("      - ./config_client.yaml:/config.yaml:ro")
+
+   
             f.write("    networks:\n")
             f.write("      - testing_net\n")
             f.write("    depends_on:\n")
