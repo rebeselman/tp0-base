@@ -1,7 +1,7 @@
 import sys
 
 
-SERVER = """ server:
+SERVER = """  server:
     container_name: server
     image: server:latest
     entrypoint: python3 /main.py

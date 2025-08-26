@@ -1,6 +1,6 @@
 name: tp0
 services:
-  server:
+ server:
     container_name: server
     image: server:latest
     entrypoint: python3 /main.py
