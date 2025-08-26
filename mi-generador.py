@@ -37,7 +37,6 @@ def generar_docker_compose(nombre_archivo, cantidad_clientes):
     with open(nombre_archivo, 'w') as f:
         f.write("name: tp0\n")
         f.write("services:\n")
-        f.write("  server:\n")
         f.write(SERVER)
         f.write('\n')
         
