@@ -6,7 +6,7 @@ SERVER = """  server:
     image: server:latest
     entrypoint: python3 /main.py
     volumes:
-      - ./config_server.ini:/config.ini:ro
+      - ./config.ini:/config.ini:ro
     networks:
       - testing_net
 """
@@ -16,7 +16,7 @@ CLIENT = """  client{ID}:
     image: client:latest
     entrypoint: /client
     volumes:
-      - ./config_client.yaml:/config.yaml:ro
+      - ./config.yaml:/config.yaml:ro
     networks:
       - testing_net
     depends_on:
