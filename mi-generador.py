@@ -43,7 +43,6 @@ def generar_docker_compose(nombre_archivo, cantidad_clientes):
         
        
         for i in range(1, cantidad_clientes + 1):
-            f.write(f"  client{i}:\n")
             f.write(CLIENT.format(ID=i))
             f.write('\n')
 
