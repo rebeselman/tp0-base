@@ -1,7 +1,8 @@
 import sys
 
 
-SERVER = """  server:
+SERVER = """
+  server:
     container_name: server
     image: server:latest
     entrypoint: python3 /main.py
@@ -11,7 +12,8 @@ SERVER = """  server:
       - testing_net
 """
 
-CLIENT = """  client{ID}:
+CLIENT = """  
+  client{ID}:
     container_name: client{ID}
     image: client:latest
     entrypoint: /client
@@ -23,7 +25,8 @@ CLIENT = """  client{ID}:
       - server
 """
 
-NETWORK = """networks:
+NETWORK = """
+networks:
   testing_net:
     ipam:
       driver: default
