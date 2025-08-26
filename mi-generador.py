@@ -1,29 +1,34 @@
 import sys
-SERVER = """ server:
+
+SERVER = """
+  server:
     container_name: server
     image: server:latest
     entrypoint: python3 /main.py
     environment:
-        - PYTHONUNBUFFERED=1
-        - LOGGING_LEVEL=DEBUG
+      - PYTHONUNBUFFERED=1
+      - LOGGING_LEVEL=DEBUG
     networks:
       - testing_net
 """
 
-CLIENT = """ client{ID}:
+CLIENT = """
+  client{ID}:
     container_name: client{ID}
     image: client:latest
     entrypoint: /client
     environment:
-        - CLI_ID={ID}
-        - CLI_LOG_LEVEL=DEBUG
+      - CLI_ID={ID}
+      - CLI_LOG_LEVEL=DEBUG
     networks:
       - testing_net
     depends_on:
       - server
 """
 
-NETWORK  = """networks:
+
+NETWORK  = """
+networks:
   testing_net:
     ipam:
       driver: default
